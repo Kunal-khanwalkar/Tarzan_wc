@@ -37,6 +37,20 @@ sudo apt -y install libxine2-dev libv4l-dev
 cd /usr/include/linux
 sudo ln -s -f ../libv4l1-videodev.h videodev.h
 cd "$cwd"
+############ For Python 3 ############
+# create virtual environment
+python3 -m venv OpenCV-"$cvVersion"-py3
+echo "# Virtual Environment Wrapper" >> ~/.bashrc
+echo "alias workoncv-$cvVersion=\"source $cwd/OpenCV-$cvVersion-py3/bin/activate\"" >> ~/.bashrc
+source "$cwd"/OpenCV-"$cvVersion"-py3/bin/activate
+
+# now install python libraries within this virtual environment
+pip install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
+ 
+# quit virtual environment
+deactivate
+
+######################################
  
 sudo apt -y install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 sudo apt -y install libgtk2.0-dev libtbb-dev qt5-default

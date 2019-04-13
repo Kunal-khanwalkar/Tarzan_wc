@@ -55,6 +55,19 @@ sudo -H pip3 install -U pip numpy
 sudo apt -y install python3-testresources
 
 cd $cwd
+############ For Python 3 ############
+# create virtual environment
+python3 -m venv OpenCV-"$cvVersion"-py3
+echo "# Virtual Environment Wrapper" >> ~/.bashrc
+echo "alias workoncv-$cvVersion=\"source $cwd/OpenCV-$cvVersion-py3/bin/activate\"" >> ~/.bashrc
+source "$cwd"/OpenCV-"$cvVersion"-py3/bin/activate
+
+# now install python libraries within this virtual environment
+pip install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
+ 
+# quit virtual environment
+deactivate
+######################################
 
 git clone https://github.com/opencv/opencv.git
 cd opencv
